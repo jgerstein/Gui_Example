@@ -6,6 +6,7 @@ int sat = 60;
 int bright = 100;
 int alpha = 30;
 int rate = 2;
+float grav = .01;
 ArrayList<Particle> particles= new ArrayList<Particle>();
 PVector emit;
 Slider abc;
@@ -34,6 +35,10 @@ void setup() {
   cp5.addSlider("alpha")
     .setPosition(20, 100)
       .setRange(0, 100)
+        ;
+  cp5.addSlider("grav")
+    .setPosition(20, 120)
+      .setRange(-.05, .15)
         ;
   noStroke();
   emit = new PVector(width/2, height/7);
@@ -70,7 +75,7 @@ class Particle {
   Particle(PVector emit, float hue, float sat, float bright, float alpha) {
     loc = emit.get();
     vel = new PVector(random(-.5, .5), random(-2, -.5));
-    acc = new PVector(0, .01);
+    acc = new PVector(0, grav);
     d = 15;
     h = hue;
     s = sat;
